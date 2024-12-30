@@ -1,0 +1,6 @@
+@FlowFi.Api_HostAddress = http://localhost:5210
+
+GET {{FlowFi.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
