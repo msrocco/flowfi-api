@@ -18,10 +18,12 @@ public class AutoMapping : Profile
         CreateMap<RequestSignUpJson, User>()
             .ForMember(dest => dest.Password, config => config.Ignore());
 
+        CreateMap<RequestBankAccountJson, BankAccount>();
     }
 
     private void EntityToResponse()
     {
         CreateMap<User, ResponseUserProfileJson>();
+        CreateMap<BankAccount, ResponseCreatedBankAccountJson>();
     }
 }

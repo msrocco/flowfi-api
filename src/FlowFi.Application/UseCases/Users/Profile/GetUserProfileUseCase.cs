@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
-using FlowFi.Application.UseCases.Users.Profile;
 using FlowFi.Communication.Responses;
 using FlowFi.Domain.Services.LoggedUser;
 
-namespace CashFlow.Application.UseCases.Users.Profile;
+namespace FlowFi.Application.UseCases.Users.Profile;
 
 public class GetUserProfileUseCase : IGetUserProfileUseCase
 {

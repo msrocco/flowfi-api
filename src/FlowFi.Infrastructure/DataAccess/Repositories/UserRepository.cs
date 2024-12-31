@@ -1,6 +1,5 @@
 ﻿using FlowFi.Domain.Entities;
 using FlowFi.Domain.Repositories.User;
-using FlowFi.Infrastructure.DataAccess;
 using Microsoft.EntityFrameworkCore;
 
 namespace FlowFi.Infrastructure.DataAccess.Repositories;

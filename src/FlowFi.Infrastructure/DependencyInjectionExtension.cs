@@ -1,4 +1,5 @@
 ﻿using FlowFi.Domain.Repositories;
+using FlowFi.Domain.Repositories.Expenses;
 using FlowFi.Domain.Repositories.User;
 using FlowFi.Domain.Security.Cryptography;
 using FlowFi.Domain.Security.Tokens;
@@ -46,6 +47,7 @@ public static class DependencyInjectionExtension
         services.AddScoped<IUserWriteOnlyRepository, UserRepository>();
         services.AddScoped<IUserWriteOnlyRepository, UserRepository>();
         services.AddScoped<IUserUpdateOnlyRepository, UserRepository>();
+        services.AddScoped<IBankAccountWriteOnlyRepository, BankAccountRepository>();
     }
 
     private static void AddDbContext(IServiceCollection services, IConfiguration configuration)
