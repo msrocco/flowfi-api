@@ -79,6 +79,15 @@ namespace FlowFi.Exception {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bank account not found..
+        /// </summary>
+        public static string BANK_ACCOUNT_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("BANK_ACCOUNT_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The bank account type is required..
         /// </summary>
         public static string BANK_ACCOUNT_TYPE_REQUIRED {

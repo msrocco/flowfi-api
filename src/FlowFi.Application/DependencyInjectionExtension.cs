@@ -3,6 +3,7 @@ using FlowFi.Application.UseCases.Auth.SignIn;
 using FlowFi.Application.UseCases.BankAccounts.Create;
 using FlowFi.Application.UseCases.BankAccounts.Delete;
 using FlowFi.Application.UseCases.BankAccounts.GetAll;
+using FlowFi.Application.UseCases.BankAccounts.Update;
 using FlowFi.Application.UseCases.Transactions.Create;
 using FlowFi.Application.UseCases.Transactions.GetAll;
 using FlowFi.Application.UseCases.Users.Profile;
@@ -32,6 +33,7 @@ public static class DependencyInjectionExtension
         services.AddScoped<ICreateBankAccountUseCase, CreateBankAccountUseCase>();
         services.AddScoped<IGetAllBankAccountsUseCase, GetAllBankAccountsUseCase>();
         services.AddScoped<IDeleteBankAccountUseCase, DeleteBankAccountUseCase>();
+        services.AddScoped<IUpdateBankAccountUseCase, UpdateBankAccountUseCase>();
         services.AddScoped<ICreateTransactionUseCase, CreateTransactionUseCase>();
         services.AddScoped<IGetAllTransactionsUseCase, GetAllTransactionsUseCase>();
     } 

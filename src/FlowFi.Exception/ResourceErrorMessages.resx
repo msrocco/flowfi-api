@@ -144,4 +144,7 @@
   <data name="BANK_ACCOUNT_ID_REQUIRED" xml:space="preserve">
     <value>The bank account id is required.</value>
   </data>
+  <data name="BANK_ACCOUNT_NOT_FOUND" xml:space="preserve">
+    <value>Bank account not found.</value>
+  </data>
 </root>

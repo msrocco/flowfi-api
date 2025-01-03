@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FlowFi.Infrastructure.DataAccess.Repositories;
 
-internal class BankAccountRepository : IBankAccountWriteOnlyRepository, IBankAccountReadOnlyRepository
+internal class BankAccountRepository : IBankAccountWriteOnlyRepository, IBankAccountReadOnlyRepository, IBankAccountUpdateOnlyRepository
 {
     private readonly FlowFiDbContext _dbContext;
 
@@ -21,12 +21,24 @@ internal class BankAccountRepository : IBankAccountWriteOnlyRepository, IBankAcc
         return await _dbContext.BankAccounts.AsNoTracking().Where(bankAccount => bankAccount.UserId == user.Id).ToListAsync();
     }
 
-    public async Task<BankAccount?> GetById(User user, Guid id)
+     async Task<BankAccount?> IBankAccountReadOnlyRepository.GetById(User user, Guid id)
     {
         return await _dbContext
             .BankAccounts
             .AsNoTracking()
             .FirstOrDefaultAsync(bankAccount => bankAccount.Id == id && bankAccount.UserId == user.Id);
+    }
+
+    async Task<BankAccount?> IBankAccountUpdateOnlyRepository.GetById(User user, Guid id)
+    {
+        return await _dbContext
+            .BankAccounts
+            .FirstOrDefaultAsync(bankAccount => bankAccount.Id == id && bankAccount.UserId == user.Id);
+    }
+
+    public void Update(BankAccount bankAccount)
+    {
+        _dbContext.BankAccounts.Update(bankAccount);
     }
 
     public async Task Delete(Guid id)
