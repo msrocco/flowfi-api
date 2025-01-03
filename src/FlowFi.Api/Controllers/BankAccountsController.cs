@@ -1,4 +1,5 @@
 ﻿using FlowFi.Application.UseCases.BankAccounts.Create;
+using FlowFi.Application.UseCases.BankAccounts.Delete;
 using FlowFi.Application.UseCases.BankAccounts.GetAll;
 using FlowFi.Communication.Requests;
 using FlowFi.Communication.Responses;
@@ -32,6 +33,19 @@ public class BankAccountsController : ControllerBase
 
         if (response.BankAccounts.Count != 0)
             return Ok(response);
+
+        return NoContent();
+    }
+
+    [HttpDelete]
+    [Route("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> Delete(
+        [FromServices] IDeleteBankAccountUseCase useCase,
+        [FromRoute] Guid id)
+    {
+        await useCase.Execute(id);
 
         return NoContent();
     }

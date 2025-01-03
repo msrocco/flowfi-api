@@ -20,4 +20,19 @@ internal class BankAccountRepository : IBankAccountWriteOnlyRepository, IBankAcc
     {
         return await _dbContext.BankAccounts.AsNoTracking().Where(bankAccount => bankAccount.UserId == user.Id).ToListAsync();
     }
+
+    public async Task<BankAccount?> GetById(User user, Guid id)
+    {
+        return await _dbContext
+            .BankAccounts
+            .AsNoTracking()
+            .FirstOrDefaultAsync(expense => expense.Id == id && expense.UserId == user.Id);
+    }
+
+    public async Task Delete(Guid id)
+    {
+        var result = await _dbContext.BankAccounts.FindAsync(id);
+
+        _dbContext.BankAccounts.Remove(result!);
+    }
 }
