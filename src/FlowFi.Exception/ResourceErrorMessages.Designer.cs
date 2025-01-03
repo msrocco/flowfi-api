@@ -70,11 +70,29 @@ namespace FlowFi.Exception {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The bank account id is required..
+        /// </summary>
+        public static string BANK_ACCOUNT_ID_REQUIRED {
+            get {
+                return ResourceManager.GetString("BANK_ACCOUNT_ID_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The bank account type is required..
         /// </summary>
         public static string BANK_ACCOUNT_TYPE_REQUIRED {
             get {
                 return ResourceManager.GetString("BANK_ACCOUNT_TYPE_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The category id is required..
+        /// </summary>
+        public static string CATEGORY_ID_REQUIRED {
+            get {
+                return ResourceManager.GetString("CATEGORY_ID_REQUIRED", resourceCulture);
             }
         }
         
@@ -93,6 +111,24 @@ namespace FlowFi.Exception {
         public static string NAME_REQUIRED {
             get {
                 return ResourceManager.GetString("NAME_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The transaction type is required..
+        /// </summary>
+        public static string TRANSACTION_TYPE_REQUIRED {
+            get {
+                return ResourceManager.GetString("TRANSACTION_TYPE_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The transaction value is required..
+        /// </summary>
+        public static string TRANSACTION_VALUE_REQUIRED {
+            get {
+                return ResourceManager.GetString("TRANSACTION_VALUE_REQUIRED", resourceCulture);
             }
         }
         

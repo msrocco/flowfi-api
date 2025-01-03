@@ -4,6 +4,7 @@ using FlowFi.Domain.Entities;
 using FlowFi.Domain.Repositories;
 using FlowFi.Domain.Repositories.Transaction;
 using FlowFi.Domain.Services.LoggedUser;
+using FlowFi.Exception.ExceptionsBase;
 
 namespace FlowFi.Application.UseCases.Transactions.Create;
 
@@ -43,6 +44,15 @@ public class CreateTransactionUseCase : ICreateTransactionUseCase
 
     private void Validate(RequestTransactionJson request)
     {
-        return;
+        var validator = new TransactionValidator();
+
+        var result = validator.Validate(request);
+
+        if (result.IsValid == false)
+        {
+            var errorMessages = result.Errors.Select(e => e.ErrorMessage).ToList();
+
+            throw new ErrorOnValidationException(errorMessages);
+        }
     }
 }
