@@ -3,6 +3,7 @@ using System;
 using FlowFi.Infrastructure.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FlowFi.Infrastructure.Migrations
 {
     [DbContext(typeof(FlowFiDbContext))]
-    partial class FlowFiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250103014731_UpdateValueToDecimal")]
+    partial class UpdateValueToDecimal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

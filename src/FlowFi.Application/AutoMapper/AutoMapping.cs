@@ -19,6 +19,7 @@ public class AutoMapping : Profile
             .ForMember(dest => dest.Password, config => config.Ignore());
 
         CreateMap<RequestBankAccountJson, BankAccount>();
+        CreateMap<RequestTransactionJson, Transaction>();
     }
 
     private void EntityToResponse()

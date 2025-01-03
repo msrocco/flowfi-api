@@ -8,7 +8,7 @@ public class Transaction
     public Guid? CategoryId { get; set; }
 
     public string Name { get; set; } = string.Empty;
-    public float Value { get; set; }
+    public decimal Value { get; set; }
     public DateTime Date { get; set; }
     public string Type { get; set; } = string.Empty;
 
