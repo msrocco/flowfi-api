@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FlowFi.Infrastructure.DataAccess.Repositories;
 
-internal class TransactionRepository : ITransactionWriteOnlyRepository
+internal class TransactionRepository : ITransactionWriteOnlyRepository, ITransactionReadOnlyRepository
 {
     private readonly FlowFiDbContext _dbContext;
 
@@ -13,5 +13,21 @@ internal class TransactionRepository : ITransactionWriteOnlyRepository
     public async Task Add(Transaction transaction)
     {
         await _dbContext.Transactions.AddAsync(transaction);
+    }
+
+    public async Task<List<Transaction>> GetAll(User user)
+    {
+        return await _dbContext.Transactions
+            .AsNoTracking()
+            .Where(transaction => transaction.UserId == user.Id)
+            .ToListAsync();
+    }
+
+    public async Task<Transaction?> GetById(User user, Guid id)
+    {
+        return await _dbContext
+            .Transactions
+            .AsNoTracking()
+            .FirstOrDefaultAsync(transaction => transaction.Id == id && transaction.UserId == user.Id);
     }
 }

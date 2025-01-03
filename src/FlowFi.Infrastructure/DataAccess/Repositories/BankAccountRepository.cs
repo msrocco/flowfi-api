@@ -26,7 +26,7 @@ internal class BankAccountRepository : IBankAccountWriteOnlyRepository, IBankAcc
         return await _dbContext
             .BankAccounts
             .AsNoTracking()
-            .FirstOrDefaultAsync(expense => expense.Id == id && expense.UserId == user.Id);
+            .FirstOrDefaultAsync(bankAccount => bankAccount.Id == id && bankAccount.UserId == user.Id);
     }
 
     public async Task Delete(Guid id)

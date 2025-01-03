@@ -53,6 +53,7 @@ public static class DependencyInjectionExtension
         services.AddScoped<IBankAccountWriteOnlyRepository, BankAccountRepository>();
         services.AddScoped<IBankAccountReadOnlyRepository, BankAccountRepository>();
         services.AddScoped<ITransactionWriteOnlyRepository, TransactionRepository>();
+        services.AddScoped<ITransactionReadOnlyRepository, TransactionRepository>();
         services.AddScoped<ICategoryWriteOnlyRepository, CategoryRepository>();
     }
 
