@@ -1,4 +1,5 @@
 ﻿using FlowFi.Domain.Repositories;
+using FlowFi.Domain.Repositories.BankAccount;
 using FlowFi.Domain.Repositories.Category;
 using FlowFi.Domain.Repositories.Expenses;
 using FlowFi.Domain.Repositories.Transaction;
@@ -50,6 +51,7 @@ public static class DependencyInjectionExtension
         services.AddScoped<IUserWriteOnlyRepository, UserRepository>();
         services.AddScoped<IUserUpdateOnlyRepository, UserRepository>();
         services.AddScoped<IBankAccountWriteOnlyRepository, BankAccountRepository>();
+        services.AddScoped<IBankAccountReadOnlyRepository, BankAccountRepository>();
         services.AddScoped<ITransactionWriteOnlyRepository, TransactionRepository>();
         services.AddScoped<ICategoryWriteOnlyRepository, CategoryRepository>();
     }

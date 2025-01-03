@@ -25,5 +25,6 @@ public class AutoMapping : Profile
     {
         CreateMap<User, ResponseUserProfileJson>();
         CreateMap<BankAccount, ResponseCreatedBankAccountJson>();
+        CreateMap<BankAccount, ResponseShortBankAccountsJson>();
     }
 }

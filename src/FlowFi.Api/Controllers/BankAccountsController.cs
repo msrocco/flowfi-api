@@ -1,4 +1,5 @@
 ﻿using FlowFi.Application.UseCases.BankAccounts.Create;
+using FlowFi.Application.UseCases.BankAccounts.GetAll;
 using FlowFi.Communication.Requests;
 using FlowFi.Communication.Responses;
 using Microsoft.AspNetCore.Mvc;
@@ -19,5 +20,19 @@ public class BankAccountsController : ControllerBase
         var response = await useCase.Execute(request);
 
         return Created(string.Empty, response);
+    }
+
+    [HttpGet]
+    [ProducesResponseType(typeof(ResponseBankAccountsJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> GetAllBankAccounts(
+        [FromServices] IGetAllBankAccountsUseCase useCase)
+    {
+        var response = await useCase.Execute();
+
+        if (response.BankAccounts.Count != 0)
+            return Ok(response);
+
+        return NoContent();
     }
 }

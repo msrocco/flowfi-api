@@ -1,9 +1,11 @@
 ﻿using FlowFi.Domain.Entities;
+using FlowFi.Domain.Repositories.BankAccount;
 using FlowFi.Domain.Repositories.Expenses;
+using Microsoft.EntityFrameworkCore;
 
 namespace FlowFi.Infrastructure.DataAccess.Repositories;
 
-internal class BankAccountRepository : IBankAccountWriteOnlyRepository
+internal class BankAccountRepository : IBankAccountWriteOnlyRepository, IBankAccountReadOnlyRepository
 {
     private readonly FlowFiDbContext _dbContext;
 
@@ -12,5 +14,10 @@ internal class BankAccountRepository : IBankAccountWriteOnlyRepository
     public async Task Add(BankAccount bankAccount)
     {
         await _dbContext.BankAccounts.AddAsync(bankAccount);
+    }
+
+    public async Task<List<BankAccount>> GetAll(User user)
+    {
+        return await _dbContext.BankAccounts.AsNoTracking().Where(bankAccount => bankAccount.UserId == user.Id).ToListAsync();
     }
 }
