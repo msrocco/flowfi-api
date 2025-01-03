@@ -5,6 +5,7 @@ using FlowFi.Domain.Repositories;
 using FlowFi.Domain.Services.LoggedUser;
 using FlowFi.Domain.Entities;
 using FlowFi.Communication.Responses;
+using FlowFi.Exception.ExceptionsBase;
 
 namespace FlowFi.Application.UseCases.BankAccounts.Create;
 
@@ -25,6 +26,8 @@ public class CreateBankAccountUseCase : ICreateBankAccountUseCase
 
     public async Task<ResponseCreatedBankAccountJson> Execute(RequestBankAccountJson request)
     {
+        Validate(request);
+
         var loggedUser = await _loggedUser.Get();
 
         var bankAccount = _mapper.Map<BankAccount>(request);
@@ -39,6 +42,15 @@ public class CreateBankAccountUseCase : ICreateBankAccountUseCase
 
     private void Validate(RequestBankAccountJson request)
     {
-        return;
+        var validator = new BankAccountValidator();
+
+        var result = validator.Validate(request);
+
+        if (result.IsValid == false)
+        {
+            var errorMessages = result.Errors.Select(e => e.ErrorMessage).ToList();
+
+            throw new ErrorOnValidationException(errorMessages);
+        }
     }
 }
