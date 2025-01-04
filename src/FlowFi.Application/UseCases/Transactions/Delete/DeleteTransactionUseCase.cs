@@ -29,7 +29,7 @@ public class DeleteTransactionUseCase : IDeleteTransactionUseCase
     {
         var loggedUser = await _loggedUser.Get();
 
-        var bankAccount = await _readOnlyRepository.GetById(loggedUser, id)
+        _ = await _readOnlyRepository.GetById(loggedUser, id)
             ?? throw new NotFoundException(ResourceErrorMessages.TRANSACTION_NOT_FOUND);
 
         await _writeOnlyRepository.Delete(id);
