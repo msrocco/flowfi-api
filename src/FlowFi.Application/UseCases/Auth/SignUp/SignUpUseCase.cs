@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using FlowFi.Communication.Requests;
 using FlowFi.Communication.Responses;
+using FlowFi.Domain.Entities;
 using FlowFi.Domain.Repositories;
+using FlowFi.Domain.Repositories.Category;
 using FlowFi.Domain.Repositories.User;
 using FlowFi.Domain.Security.Cryptography;
 using FlowFi.Domain.Security.Tokens;
@@ -16,6 +18,7 @@ public class SignUpUseCase : ISignUpUseCase
     private readonly IPasswordEncripter _passwordEncripter;
     private readonly IUserReadOnlyRepository _userReadOnlyRepository;
     private readonly IUserWriteOnlyRepository _userWriteOnlyRepository;
+    private readonly ICategoryWriteOnlyRepository _categoryWriteOnlyRepository;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IAccessTokenGenerator _tokenGenerator;
 
@@ -24,6 +27,7 @@ public class SignUpUseCase : ISignUpUseCase
         IPasswordEncripter passwordEncripter,
         IUserReadOnlyRepository userReadOnlyRepository,
         IUserWriteOnlyRepository userWriteOnlyRepository,
+        ICategoryWriteOnlyRepository categoryWriteOnlyRepository,
         IUnitOfWork unitOfWork,
         IAccessTokenGenerator tokenGenerator)
     {
@@ -31,6 +35,7 @@ public class SignUpUseCase : ISignUpUseCase
         _passwordEncripter = passwordEncripter;
         _userReadOnlyRepository = userReadOnlyRepository;
         _userWriteOnlyRepository = userWriteOnlyRepository;
+        _categoryWriteOnlyRepository = categoryWriteOnlyRepository;
         _unitOfWork = unitOfWork;
         _tokenGenerator = tokenGenerator;
     }
@@ -45,6 +50,24 @@ public class SignUpUseCase : ISignUpUseCase
         user.Id = Guid.NewGuid();
 
         await _userWriteOnlyRepository.Add(user);
+
+        var defaultCategories = new List<Category>
+        {
+            new Category { Id = Guid.NewGuid(), Name = "Salary", Icon = "salary", Type = "INCOME", UserId = user.Id },
+            new Category { Id = Guid.NewGuid(), Name = "Freelance", Icon = "freelance", Type = "INCOME", UserId = user.Id },
+            new Category { Id = Guid.NewGuid(), Name = "Other", Icon = "other", Type = "INCOME", UserId = user.Id },
+            new Category { Id = Guid.NewGuid(), Name = "Home", Icon = "home", Type = "EXPENSE", UserId = user.Id },
+            new Category { Id = Guid.NewGuid(), Name = "Food", Icon = "food", Type = "EXPENSE", UserId = user.Id },
+            new Category { Id = Guid.NewGuid(), Name = "Education", Icon = "education", Type = "EXPENSE", UserId = user.Id },
+            new Category { Id = Guid.NewGuid(), Name = "Leisure", Icon = "fun", Type = "EXPENSE", UserId = user.Id },
+            new Category { Id = Guid.NewGuid(), Name = "Groceries", Icon = "grocery", Type = "EXPENSE", UserId = user.Id },
+            new Category { Id = Guid.NewGuid(), Name = "Clothes", Icon = "clothes", Type = "EXPENSE", UserId = user.Id },
+            new Category { Id = Guid.NewGuid(), Name = "Transport", Icon = "transport", Type = "EXPENSE", UserId = user.Id },
+            new Category { Id = Guid.NewGuid(), Name = "Travel", Icon = "travel", Type = "EXPENSE", UserId = user.Id },
+            new Category { Id = Guid.NewGuid(), Name = "Other", Icon = "other", Type = "EXPENSE", UserId = user.Id }
+        };
+
+        await _categoryWriteOnlyRepository.AddRange(defaultCategories);
 
         await _unitOfWork.Commit();
 

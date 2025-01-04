@@ -15,6 +15,11 @@ internal class CategoryRepository : ICategoryWriteOnlyRepository, ICategoryReadO
         await _dbContext.Categories.AddAsync(category);
     }
 
+    public async Task AddRange(IEnumerable<Category> categories)
+    {
+        await _dbContext.Categories.AddRangeAsync(categories);
+    }
+
     public async Task<List<Category>> GetAll(User user)
     {
         return await _dbContext.Categories
