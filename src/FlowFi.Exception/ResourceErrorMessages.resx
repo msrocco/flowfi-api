@@ -150,4 +150,7 @@
   <data name="TRANSACTION_NOT_FOUND" xml:space="preserve">
     <value>Transaction not found.</value>
   </data>
+  <data name="CATEGORY_NOT_FOUND" xml:space="preserve">
+    <value>Category not found.</value>
+  </data>
 </root>

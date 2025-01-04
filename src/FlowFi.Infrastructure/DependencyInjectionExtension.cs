@@ -56,6 +56,7 @@ public static class DependencyInjectionExtension
         services.AddScoped<ITransactionReadOnlyRepository, TransactionRepository>();
         services.AddScoped<ITransactionUpdateOnlyRepository, TransactionRepository>();
         services.AddScoped<ICategoryWriteOnlyRepository, CategoryRepository>();
+        services.AddScoped<ICategoryReadOnlyRepository, CategoryRepository>();
     }
 
     private static void AddDbContext(IServiceCollection services, IConfiguration configuration)
