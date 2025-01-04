@@ -1,4 +1,5 @@
 ﻿using FlowFi.Application.UseCases.Categories.Delete;
+using FlowFi.Application.UseCases.Categories.GetAll;
 using FlowFi.Communication.Responses;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +9,20 @@ namespace FlowFi.Api.Controllers;
 [ApiController]
 public class CategoriesController : ControllerBase
 {
+    [HttpGet]
+    [ProducesResponseType(typeof(ResponseCategoriesJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> GetAllCategories(
+    [FromServices] IGetAllCategoriesUseCase useCase)
+    {
+        var response = await useCase.Execute();
+
+        if (response.Categories.Count != 0)
+            return Ok(response);
+
+        return NoContent();
+    }
+
     [HttpDelete]
     [Route("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]

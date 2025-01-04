@@ -28,5 +28,6 @@ public class AutoMapping : Profile
         CreateMap<BankAccount, ResponseCreatedBankAccountJson>();
         CreateMap<BankAccount, ResponseShortBankAccountsJson>();
         CreateMap<Transaction, ResponseShortTransactionJson>();
+        CreateMap<Category, ResponseShortCategoryJson>();
     }
 }
