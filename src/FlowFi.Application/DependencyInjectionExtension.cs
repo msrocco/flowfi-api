@@ -6,6 +6,7 @@ using FlowFi.Application.UseCases.BankAccounts.GetAll;
 using FlowFi.Application.UseCases.BankAccounts.Update;
 using FlowFi.Application.UseCases.Transactions.Create;
 using FlowFi.Application.UseCases.Transactions.GetAll;
+using FlowFi.Application.UseCases.Transactions.Update;
 using FlowFi.Application.UseCases.Users.Profile;
 using FlowFi.Application.UseCases.Users.Register;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,5 +37,6 @@ public static class DependencyInjectionExtension
         services.AddScoped<IUpdateBankAccountUseCase, UpdateBankAccountUseCase>();
         services.AddScoped<ICreateTransactionUseCase, CreateTransactionUseCase>();
         services.AddScoped<IGetAllTransactionsUseCase, GetAllTransactionsUseCase>();
+        services.AddScoped<IUpdateTransactionUseCase, UpdateTransactionUseCase>();
     } 
 }

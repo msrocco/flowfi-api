@@ -1,5 +1,6 @@
 ﻿using FlowFi.Application.UseCases.Transactions.Create;
 using FlowFi.Application.UseCases.Transactions.GetAll;
+using FlowFi.Application.UseCases.Transactions.Update;
 using FlowFi.Communication.Requests;
 using FlowFi.Communication.Responses;
 using Microsoft.AspNetCore.Mvc;
@@ -32,6 +33,21 @@ public class TransactionsController : ControllerBase
 
         if (response.Transactions.Count != 0)
             return Ok(response);
+
+        return NoContent();
+    }
+
+    [HttpPut]
+    [Route("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> Update(
+    [FromServices] IUpdateTransactionUseCase useCase,
+    [FromRoute] Guid id,
+    [FromBody] RequestTransactionJson request)
+    {
+        await useCase.Execute(id, request);
 
         return NoContent();
     }
