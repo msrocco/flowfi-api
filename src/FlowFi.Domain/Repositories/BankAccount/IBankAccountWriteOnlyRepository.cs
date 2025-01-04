@@ -1,4 +1,4 @@
-﻿namespace FlowFi.Domain.Repositories.Expenses;
+﻿namespace FlowFi.Domain.Repositories.BankAccount;
 
 public interface IBankAccountWriteOnlyRepository
 {

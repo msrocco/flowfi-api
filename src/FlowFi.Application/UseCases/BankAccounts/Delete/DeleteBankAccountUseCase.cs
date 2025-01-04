@@ -1,7 +1,6 @@
 ﻿
 using FlowFi.Domain.Repositories;
 using FlowFi.Domain.Repositories.BankAccount;
-using FlowFi.Domain.Repositories.Expenses;
 using FlowFi.Domain.Services.LoggedUser;
 using FlowFi.Exception.ExceptionsBase;
 

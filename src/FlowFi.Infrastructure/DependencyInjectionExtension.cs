@@ -1,7 +1,6 @@
 ﻿using FlowFi.Domain.Repositories;
 using FlowFi.Domain.Repositories.BankAccount;
 using FlowFi.Domain.Repositories.Category;
-using FlowFi.Domain.Repositories.Expenses;
 using FlowFi.Domain.Repositories.Transaction;
 using FlowFi.Domain.Repositories.User;
 using FlowFi.Domain.Security.Cryptography;

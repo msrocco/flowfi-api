@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using FlowFi.Domain.Repositories.Expenses;
+using FlowFi.Domain.Repositories.BankAccount;
 using FlowFi.Communication.Requests;
 using FlowFi.Domain.Repositories;
 using FlowFi.Domain.Services.LoggedUser;

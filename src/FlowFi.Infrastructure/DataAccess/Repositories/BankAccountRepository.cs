@@ -1,6 +1,5 @@
 ﻿using FlowFi.Domain.Entities;
 using FlowFi.Domain.Repositories.BankAccount;
-using FlowFi.Domain.Repositories.Expenses;
 using Microsoft.EntityFrameworkCore;
 
 namespace FlowFi.Infrastructure.DataAccess.Repositories;
