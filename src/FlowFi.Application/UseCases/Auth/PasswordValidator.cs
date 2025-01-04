@@ -2,7 +2,7 @@
 using FluentValidation.Validators;
 using System.Text.RegularExpressions;
 
-namespace FlowFi.Application.UseCases.Users;
+namespace FlowFi.Application.UseCases.Auth;
 
 public partial class PasswordValidator<T> : PropertyValidator<T, string>
 {

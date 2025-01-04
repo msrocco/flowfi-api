@@ -1,5 +1,6 @@
 ﻿using FlowFi.Application.AutoMapper;
 using FlowFi.Application.UseCases.Auth.SignIn;
+using FlowFi.Application.UseCases.Auth.SignUp;
 using FlowFi.Application.UseCases.BankAccounts.Create;
 using FlowFi.Application.UseCases.BankAccounts.Delete;
 using FlowFi.Application.UseCases.BankAccounts.GetAll;
@@ -11,7 +12,6 @@ using FlowFi.Application.UseCases.Transactions.Delete;
 using FlowFi.Application.UseCases.Transactions.GetAll;
 using FlowFi.Application.UseCases.Transactions.Update;
 using FlowFi.Application.UseCases.Users.Profile;
-using FlowFi.Application.UseCases.Users.Register;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FlowFi.Application;

@@ -10,7 +10,7 @@ using FlowFi.Domain.Security.Tokens;
 using FlowFi.Exception.ExceptionsBase;
 using FluentValidation.Results;
 
-namespace FlowFi.Application.UseCases.Users.Register;
+namespace FlowFi.Application.UseCases.Auth.SignUp;
 
 public class SignUpUseCase : ISignUpUseCase
 {
@@ -44,7 +44,7 @@ public class SignUpUseCase : ISignUpUseCase
     {
         await Validate(request);
 
-        var user = _mapper.Map<Domain.Entities.User>(request);
+        var user = _mapper.Map<User>(request);
 
         user.Password = _passwordEncripter.Encrypt(request.Password);
         user.Id = Guid.NewGuid();

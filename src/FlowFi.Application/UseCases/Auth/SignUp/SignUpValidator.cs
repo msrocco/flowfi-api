@@ -1,7 +1,7 @@
 ﻿using FlowFi.Communication.Requests;
 using FluentValidation;
 
-namespace FlowFi.Application.UseCases.Users.Register;
+namespace FlowFi.Application.UseCases.Auth.SignUp;
 
 public class SignUpValidator : AbstractValidator<RequestSignUpJson>
 {
