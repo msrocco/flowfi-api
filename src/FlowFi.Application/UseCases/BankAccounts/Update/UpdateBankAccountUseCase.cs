@@ -33,16 +33,16 @@ public class UpdateBankAccountUseCase : IUpdateBankAccountUseCase
 
         var loggedUser = await _loggedUser.Get();
 
-        var expense = await _repository.GetById(loggedUser, id);
+        var bankAccount = await _repository.GetById(loggedUser, id);
 
-        if (expense is null)
+        if (bankAccount is null)
         {
             throw new NotFoundException(ResourceErrorMessages.BANK_ACCOUNT_NOT_FOUND);
         }
 
-        _mapper.Map(request, expense);
+        _mapper.Map(request, bankAccount);
 
-        _repository.Update(expense);
+        _repository.Update(bankAccount);
 
         await _unitOfWork.Commit();
     }
