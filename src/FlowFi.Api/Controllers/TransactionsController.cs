@@ -1,4 +1,5 @@
 ﻿using FlowFi.Application.UseCases.Transactions.Create;
+using FlowFi.Application.UseCases.Transactions.Delete;
 using FlowFi.Application.UseCases.Transactions.GetAll;
 using FlowFi.Application.UseCases.Transactions.Update;
 using FlowFi.Communication.Requests;
@@ -48,6 +49,19 @@ public class TransactionsController : ControllerBase
     [FromBody] RequestTransactionJson request)
     {
         await useCase.Execute(id, request);
+
+        return NoContent();
+    }
+
+    [HttpDelete]
+    [Route("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> Delete(
+    [FromServices] IDeleteTransactionUseCase useCase,
+    [FromRoute] Guid id)
+    {
+        await useCase.Execute(id);
 
         return NoContent();
     }

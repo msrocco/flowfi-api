@@ -43,4 +43,10 @@ internal class TransactionRepository : ITransactionWriteOnlyRepository, ITransac
         _dbContext.Transactions.Update(transaction);
     }
 
+    public async Task Delete(Guid id)
+    {
+        var result = await _dbContext.Transactions.FindAsync(id);
+
+        _dbContext.Transactions.Remove(result!);
+    }
 }

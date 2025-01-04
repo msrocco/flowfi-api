@@ -124,6 +124,15 @@ namespace FlowFi.Exception {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Transaction not found..
+        /// </summary>
+        public static string TRANSACTION_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("TRANSACTION_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The transaction type is required..
         /// </summary>
         public static string TRANSACTION_TYPE_REQUIRED {
