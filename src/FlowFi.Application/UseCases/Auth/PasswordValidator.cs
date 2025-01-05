@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using FlowFi.Exception;
+using FluentValidation;
 using FluentValidation.Validators;
 using System.Text.RegularExpressions;
 
@@ -19,35 +20,35 @@ public partial class PasswordValidator<T> : PropertyValidator<T, string>
     {
         if (string.IsNullOrWhiteSpace(password))
         { 
-            context.MessageFormatter.AppendArgument(ERROR_MESSAGE_KEY, "Your password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one number."); // ResourceErrorMessages.INVALID_PASSWORD
+            context.MessageFormatter.AppendArgument(ERROR_MESSAGE_KEY, ResourceErrorMessages.INVALID_PASSWORD);
             return false;
         }
 
         if (password.Length < 8)
         {
-            context.MessageFormatter.AppendArgument(ERROR_MESSAGE_KEY, "Your password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one number."); // ResourceErrorMessages.INVALID_PASSWORD
+            context.MessageFormatter.AppendArgument(ERROR_MESSAGE_KEY, ResourceErrorMessages.INVALID_PASSWORD);
             return false;
         }
 
         if (UpperCaseLetter().IsMatch(password) == false)
         {
-            context.MessageFormatter.AppendArgument(ERROR_MESSAGE_KEY, "Your password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one number."); // ResourceErrorMessages.INVALID_PASSWORD
+            context.MessageFormatter.AppendArgument(ERROR_MESSAGE_KEY, ResourceErrorMessages.INVALID_PASSWORD);
             return false;
         }
 
         if (LowerCaseLetter().IsMatch(password) == false)
         {
-            context.MessageFormatter.AppendArgument(ERROR_MESSAGE_KEY, "Your password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one number."); // ResourceErrorMessages.INVALID_PASSWORD
+            context.MessageFormatter.AppendArgument(ERROR_MESSAGE_KEY, ResourceErrorMessages.INVALID_PASSWORD);
             return false;
         }
         if (Numbers().IsMatch(password) == false)
         {
-            context.MessageFormatter.AppendArgument(ERROR_MESSAGE_KEY, "Your password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one number."); // ResourceErrorMessages.INVALID_PASSWORD
+            context.MessageFormatter.AppendArgument(ERROR_MESSAGE_KEY, ResourceErrorMessages.INVALID_PASSWORD);
             return false;
         }
         if (SpecialSymbols().IsMatch(password) == false)
         {
-            context.MessageFormatter.AppendArgument(ERROR_MESSAGE_KEY, "Your password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one number."); // ResourceErrorMessages.INVALID_PASSWORD
+            context.MessageFormatter.AppendArgument(ERROR_MESSAGE_KEY, ResourceErrorMessages.INVALID_PASSWORD);
             return false;
         }
 
@@ -60,6 +61,6 @@ public partial class PasswordValidator<T> : PropertyValidator<T, string>
     private static partial Regex LowerCaseLetter();
     [GeneratedRegex(@"[0-9]+")]
     private static partial Regex Numbers();
-    [GeneratedRegex(@"[\!\?\*\.]+")]
+    [GeneratedRegex(@"[\!\?\*\.\@]+")]
     private static partial Regex SpecialSymbols();
 }
