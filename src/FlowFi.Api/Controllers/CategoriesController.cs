@@ -1,5 +1,7 @@
-﻿using FlowFi.Application.UseCases.Categories.Delete;
+﻿using FlowFi.Application.UseCases.Categories.Create;
+using FlowFi.Application.UseCases.Categories.Delete;
 using FlowFi.Application.UseCases.Categories.GetAll;
+using FlowFi.Communication.Requests;
 using FlowFi.Communication.Responses;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,6 +23,18 @@ public class CategoriesController : ControllerBase
             return Ok(response);
 
         return NoContent();
+    }
+
+    [HttpPost]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> Create(
+     [FromServices] ICreateCategoryUseCase useCase,
+     [FromBody] RequestCategoryJson request)
+    {
+        await useCase.Execute(request);
+
+        return StatusCode(StatusCodes.Status201Created);
     }
 
     [HttpDelete]

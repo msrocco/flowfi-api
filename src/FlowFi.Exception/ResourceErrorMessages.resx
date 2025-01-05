@@ -165,4 +165,10 @@
   <data name="INVALID_PASSWORD" xml:space="preserve">
     <value>Your password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one number.</value>
   </data>
+  <data name="ICON_REQUIRED" xml:space="preserve">
+    <value>The icon is required.</value>
+  </data>
+  <data name="CATEGORY_TYPE_REQUIRED" xml:space="preserve">
+    <value>The category type is required.</value>
+  </data>
 </root>

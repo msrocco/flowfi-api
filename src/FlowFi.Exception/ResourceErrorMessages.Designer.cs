@@ -169,7 +169,29 @@ namespace FlowFi.Exception {
                 return ResourceManager.GetString("NAME_REQUIRED", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to The icon is required..
+        /// </summary>
+        public static string ICON_REQUIRED
+        {
+            get
+            {
+                return ResourceManager.GetString("ICON_REQUIRED", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The category type is..
+        /// </summary>
+        public static string CATEGORY_TYPE_REQUIRED
+        {
+            get
+            {
+                return ResourceManager.GetString("CATEGORY_TYPE_REQUIRED", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Transaction not found..
         /// </summary>

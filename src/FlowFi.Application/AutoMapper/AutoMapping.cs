@@ -20,6 +20,7 @@ public class AutoMapping : Profile
 
         CreateMap<RequestBankAccountJson, BankAccount>();
         CreateMap<RequestTransactionJson, Transaction>();
+        CreateMap<RequestCategoryJson, Category>();
     }
 
     private void EntityToResponse()
