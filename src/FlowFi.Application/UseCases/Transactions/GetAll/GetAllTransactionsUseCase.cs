@@ -18,11 +18,11 @@ public class GetAllTransactionsUseCase : IGetAllTransactionsUseCase
         _loggedUser = loggedUser;
     }
 
-    public async Task<ResponseTransactionsJson> Execute()
+    public async Task<ResponseTransactionsJson> Execute(int? month = null, int? year = null, Guid? bankAccountId = null, string? type = null)
     {
         var loggedUser = await _loggedUser.Get();
 
-        var result = await _repository.GetAll(loggedUser);
+        var result = await _repository.GetAll(loggedUser, month, year, bankAccountId, type);
 
         return new ResponseTransactionsJson
         {

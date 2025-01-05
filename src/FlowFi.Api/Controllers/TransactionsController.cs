@@ -28,9 +28,13 @@ public class TransactionsController : ControllerBase
     [ProducesResponseType(typeof(ResponseTransactionsJson), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> GetAllTransactions(
-    [FromServices] IGetAllTransactionsUseCase useCase)
+        [FromServices] IGetAllTransactionsUseCase useCase,
+        [FromQuery] int? month = null,
+        [FromQuery] int? year = null,
+        [FromQuery] Guid? bankAccountId = null,
+        [FromQuery] string? type = null)
     {
-        var response = await useCase.Execute();
+        var response = await useCase.Execute(month, year, bankAccountId, type);
 
         if (response.Transactions.Count != 0)
             return Ok(response);

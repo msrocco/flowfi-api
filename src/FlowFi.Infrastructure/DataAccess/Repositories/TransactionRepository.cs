@@ -1,5 +1,6 @@
 ﻿using FlowFi.Domain.Entities;
 using FlowFi.Domain.Repositories.Transaction;
+using FlowFi.Infrastructure.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace FlowFi.Infrastructure.DataAccess.Repositories;
@@ -15,11 +16,20 @@ internal class TransactionRepository : ITransactionWriteOnlyRepository, ITransac
         await _dbContext.Transactions.AddAsync(transaction);
     }
 
-    public async Task<List<Transaction>> GetAll(User user)
+    public async Task<List<Transaction>> GetAll(
+        User user,
+        int? month = null,
+        int? year = null,
+        Guid? bankAccountId = null,
+        string? type = null)
     {
         return await _dbContext.Transactions
             .AsNoTracking()
             .Where(transaction => transaction.UserId == user.Id)
+            .ApplyFilter(month.HasValue, transaction => transaction.Date.Month == month.GetValueOrDefault())
+            .ApplyFilter(year.HasValue, transaction => transaction.Date.Year == year.GetValueOrDefault())
+            .ApplyFilter(bankAccountId.HasValue, transaction => transaction.BankAccountId == bankAccountId)
+            .ApplyFilter(!string.IsNullOrEmpty(type), transaction => transaction.Type == type)
             .ToListAsync();
     }
 
